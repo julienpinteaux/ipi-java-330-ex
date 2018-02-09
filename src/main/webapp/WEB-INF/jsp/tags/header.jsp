@@ -1,5 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="en" >
 <head>
+	<meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
@@ -13,7 +15,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand">Gestion des employés</a>
+            <a href="/employes" class="navbar-brand">Gestion des employés</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

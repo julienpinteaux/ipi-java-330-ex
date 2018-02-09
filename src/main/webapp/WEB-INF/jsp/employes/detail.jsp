@@ -1,25 +1,30 @@
+
+<%@ include file="../tags/header.jsp" %>
+<%@ page import="com.ipiecoles.java.java320.model.*" %>
+<% Employe emp = (Employe) pageContext.findAttribute("employe"); %>
+ 
 <div class="container">
-    <h2>Détail du commercial/technicien/manager matricule</h2>
+    <h2>Détail du ${employe.getClassName()}, ${employe.matricule}</h2>
 
     <div class="row">
-        <form id="saveForm" action="" method="post">
+        <form id="saveForm" action="/${employe.className.toLowerCase()}/${employe.id}" method="post">
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Nom</label>
-                <input type="text" value="Nom" class="form-control" name="nom" id="nom">
+                <input type="text" value="${employe.nom}" class="form-control" name="nom" id="nom">
 
                 <label class="form-control-label" for="prenom">Prénom</label>
-                <input type="text" value="Prénom" class="form-control" name="prenom" id="prenom">
+                <input type="text" value="${employe.prenom}" class="form-control" name="prenom" id="prenom">
 
                 <label class="form-control-label" for="matricule">Matricule</label>
-                <input type="text" value="Matricule" class="form-control" name="matricule" id="matricule">
+                <input type="text" value="${employe.matricule}" class="form-control" name="matricule" id="matricule">
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Salaire</label>
                 <div class="input-group">
-                    <input type="number" value="Salaire" class="form-control" name="salaire" id="salaire">
+                    <input type="number" value="${employe.salaire}" class="form-control" name="salaire" id="salaire">
                     <span class="input-group-addon">€</span>
                 </div>
 
@@ -27,27 +32,30 @@
 
                 <label class="form-control-label" for="nom">Prime Annuelle</label>
                 <div class="input-group">
-                    <input type="text" value="Prime annuelle" class="form-control" name="primeAnnuelle" id="primeAnnuelle">
+                    <input type="text" value="${employe.getPrimeAnnuelle()}" class="form-control" name="primeAnnuelle" id="primeAnnuelle">
                     <span class="input-group-addon">€</span>
                 </div>
 
 
                 <label class="form-control-label" for="nom">Date d'embauche</label>
-                <input type="text" value="Date d'embauche" class="form-control" name="dateEmbauche" id="dateEmbauche">
+                <input type="text" value="${employe.dateEmbauche}" class="form-control" name="dateEmbauche" id="dateEmbauche">
 
-                <p>Si l'employé est un commercial</p>
+                <% if(emp instanceof Commercial) { %>
                 <label class="form-control-label" for="performance">Performance</label>
-                <input type="number" value="" class="form-control" name="performance" id="performance">
+                <input type="number" value="${employe.getPerformance()}" class="form-control" name="performance" id="performance">
+                  <% } %>
 
                 <label class="form-control-label" for="caAnnuel">CA Annuel</label>
                 <div class="input-group">
                     <input type="number" value="" class="form-control" name="caAnnuel" id="caAnnuel">
                     <span class="input-group-addon">€</span>
                 </div>
+              
 
-                <p>Si l'employé est un technicien</p>
+                <% if(emp instanceof Technicien) { %>
                 <label class="form-control-label" for="grade">Grade</label>
-                <input type="number" value="" class="form-control" name="grade" id="grade">
+                <input type="number" value="${employe.getGrade()}" class="form-control" name="grade" id="grade">
+                <% } %>
 
 
                 <p>Si l'employé est un manager et que c'est une consultation</p>
@@ -111,3 +119,4 @@
         </div>
     </div>
 </div>
+<%@ include file="../tags/footer.jsp" %>
